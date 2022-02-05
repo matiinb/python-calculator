@@ -21,12 +21,23 @@ class calculator(QMainWindow, Ui_Window):
 		self.numEight.clicked.connect(lambda: self.addToInput(8))
 		self.numNine.clicked.connect(lambda: self.addToInput(9))
 
+		# Add Functionality To Period Button
+		self.periodBtn.clicked.connect(lambda: self.addToInput("."))
+
 		# Add Funcionality To Delete Button
 		self.delBtn.clicked.connect(self.delFromLast)
+
+		# Add Functionality To Clear Button
+		self.clearBtn.clicked.connect(lambda: self.inputField.setText(""))
 
 		self.show()
 
 	def addToInput(self, num):
+		if num == 0 and self.inputField.text() == "":
+			return False
+		if num == "." and "." in self.inputField.text():
+			return False
+
 		self.inputField.setText(self.inputField.text() + str(num))
 
 	def delFromLast(self):
