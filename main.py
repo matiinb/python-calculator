@@ -2,6 +2,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from calculator import Ui_Window
+import pyperclip
 
 global tmpOperator
 tmpOperator = ""
@@ -43,7 +44,10 @@ class calculator(QMainWindow, Ui_Window):
 		self.additionBtn.clicked.connect(lambda: self.calc("addition"))
 		self.equalBtn.clicked.connect(lambda: self.calc("equal"))
 
+		# Negativity Toggle Button
 		self.negPosBtn.clicked.connect(self.toggleNum)
+
+		self.copyBtn.clicked.connect(lambda: pyperclip.copy(self.inputField.text()))
 
 		self.show()
 
