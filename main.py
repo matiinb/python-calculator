@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from calculator import Ui_Window
 import pyperclip
+import keyboard
 
 global tmpOperator
 tmpOperator = ""
@@ -47,7 +48,30 @@ class calculator(QMainWindow, Ui_Window):
 		# Negativity Toggle Button
 		self.negPosBtn.clicked.connect(self.toggleNum)
 
+		# Functionality of the copy button
 		self.copyBtn.clicked.connect(lambda: pyperclip.copy(self.inputField.text()))
+
+		# Hotkeys for each button
+		keyboard.on_press_key("0", lambda _:self.numZero.click())
+		keyboard.on_press_key("1", lambda _:self.numOne.click())
+		keyboard.on_press_key("2", lambda _:self.numTwo.click())
+		keyboard.on_press_key("3", lambda _:self.numThree.click())
+		keyboard.on_press_key("4", lambda _:self.numFour.click())
+		keyboard.on_press_key("5", lambda _:self.numFive.click())
+		keyboard.on_press_key("6", lambda _:self.numSix.click())
+		keyboard.on_press_key("7", lambda _:self.numSeven.click())
+		keyboard.on_press_key("8", lambda _:self.numEight.click())
+		keyboard.on_press_key("9", lambda _:self.numNine.click())
+		keyboard.on_press_key("period", lambda _:self.periodBtn.click())
+
+		keyboard.on_press_key("return", lambda _:self.equalBtn.click())
+		keyboard.on_press_key("esc", lambda _:self.clearBtn.click())
+		keyboard.on_press_key("delete", lambda _:self.delBtn.click())
+
+		keyboard.on_press_key("/", lambda _:self.divisionBtn.click())
+		keyboard.on_press_key("*", lambda _:self.multiplyBtn.click())
+		keyboard.on_press_key("-", lambda _:self.subtractBtn.click())
+		keyboard.on_press_key("+", lambda _:self.additionBtn.click())
 
 		self.show()
 
