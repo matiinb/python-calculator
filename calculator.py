@@ -5,6 +5,7 @@
 #
 
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -25,7 +26,7 @@ class Ui_Window(object):
         font.setFamily("Cascadia Code")
         font.setPointSize(16)
         self.inputField.setFont(font)
-        self.inputField.setText("0")
+        self.inputField.setText("")
         self.inputField.setObjectName("inputField")
         self.clearBtn = QtWidgets.QPushButton(self.centralwidget)
         self.clearBtn.setGeometry(QtCore.QRect(10, 60, 141, 61))
@@ -133,7 +134,7 @@ class Ui_Window(object):
         self.periodBtn.setFont(font)
         self.periodBtn.setObjectName("periodBtn")
         self.numZero = QtWidgets.QPushButton(self.centralwidget)
-        self.numZero.setGeometry(QtCore.QRect(10, 340, 141, 61))
+        self.numZero.setGeometry(QtCore.QRect(10, 340, 61, 61))
         font = QtGui.QFont()
         font.setFamily("Cascadia Code")
         font.setPointSize(16)
@@ -153,6 +154,13 @@ class Ui_Window(object):
         font.setPointSize(16)
         self.equalBtn.setFont(font)
         self.equalBtn.setObjectName("equalBtn")
+        self.negPosBtn = QtWidgets.QPushButton(self.centralwidget)
+        self.negPosBtn.setGeometry(QtCore.QRect(90, 340, 61, 61))
+        font = QtGui.QFont()
+        font.setFamily("Cascadia Code")
+        font.setPointSize(16)
+        self.negPosBtn.setFont(font)
+        self.negPosBtn.setObjectName("negPosBtn")
         Window.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(Window)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 321, 21))
@@ -186,3 +194,4 @@ class Ui_Window(object):
         self.numZero.setText(_translate("Window", "0"))
         self.additionBtn.setText(_translate("Window", "+"))
         self.equalBtn.setText(_translate("Window", "="))
+        self.negPosBtn.setText(_translate("Window", "+/-"))
