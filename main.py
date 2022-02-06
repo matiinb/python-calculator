@@ -34,7 +34,7 @@ class calculator(QMainWindow, Ui_Window):
 		self.delBtn.clicked.connect(self.delFromLast)
 
 		# Add Functionality To Clear Button
-		self.clearBtn.clicked.connect(lambda: self.inputField.setText(""))
+		self.clearBtn.clicked.connect(lambda: self.inputField.setText("0"))
 
 		# Add Functionality To Operator Buttons
 		self.divisionBtn.clicked.connect(lambda: self.calc("divide"))
@@ -51,13 +51,16 @@ class calculator(QMainWindow, Ui_Window):
 		if tmpOperator != "":
 			# Clear the input field when a previous operation is done
 			if clearInputField:
-				self.inputField.setText("")
+				self.inputField.setText("0")
 				clearInputField = False
 
-		if num == 0 and self.inputField.text() == "":
+		if num == 0 and self.inputField.text() == "0":
 			return False
 		if num == "." and "." in self.inputField.text():
 			return False
+
+		if self.inputField.text() == "0":
+			self.inputField.setText("")
 
 		self.inputField.setText(self.inputField.text() + str(num))
 
@@ -69,7 +72,7 @@ class calculator(QMainWindow, Ui_Window):
 		global tmpNum
 		tmpNum = float(self.inputField.text())
 		tmpOperator = operation
-		self.inputField.setText("")
+		self.inputField.setText("0")
 
 	def findResult(self):
 		global tmpOperator
