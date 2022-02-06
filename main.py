@@ -3,6 +3,10 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from calculator import Ui_Window
 
+global tmpOperator
+tmpOperator = ""
+global tmpNum
+tmpNum = 0
 
 class calculator(QMainWindow, Ui_Window):
 	def __init__(self, *args, obj=None, **kwargs):
@@ -30,9 +34,21 @@ class calculator(QMainWindow, Ui_Window):
 		# Add Functionality To Clear Button
 		self.clearBtn.clicked.connect(lambda: self.inputField.setText(""))
 
+		# Add Functionality To Operator Buttons
+		self.divisionBtn.clicked.connect(lambda: self.calc("divide"))
+		self.multiplyBtn.clicked.connect(lambda: self.calc("multiply"))
+		self.subtractBtn.clicked.connect(lambda: self.calc("subtract"))
+		self.additionBtn.clicked.connect(lambda: self.calc("addition"))
+		self.equalBtn.clicked.connect(lambda: self.calc("equal"))
+
 		self.show()
 
 	def addToInput(self, num):
+		global tmpOperator
+		if tmpOperator != "":
+			# Clear the input field when a previous operation is done
+			self.inputField.setText("")
+
 		if num == 0 and self.inputField.text() == "":
 			return False
 		if num == "." and "." in self.inputField.text():
@@ -42,6 +58,47 @@ class calculator(QMainWindow, Ui_Window):
 
 	def delFromLast(self):
 		self.inputField.setText(self.inputField.text()[0:-1])
+
+	def setTmpVars(operation):
+		global tmpOperator
+		global tmpNum
+		tmpNum = float(self.inputField.text())
+		tmpOperator = operation
+		self.inputField.setText("")
+
+	def findResult(self):
+		global tmpOperator
+		global tmpNum
+		match tmpOperator:
+			case "divide":
+				self.inputField.setText(str(tmpNum / float(self.inputField.text())))
+			case "multiply":
+				self.inputField.setText(str(tmpNum * float(self.inputField.text())))
+			case "subtract":
+				self.inputField.setText(str(tmpNum - float(self.inputField.text())))
+			case "addition":
+				self.inputField.setText(str(tmpNum + float(self.inputField.text())))
+
+		tmpOperator = ""
+		tmpNum = 0
+
+	def calc(self, operation):
+		global tmpOperator
+		global tmpNum
+		findEqual = False
+
+		print(tmpOperator)
+		print(tmpNum)
+
+		if tmpOperator != "":
+			self.findResult()
+
+		match operation:
+			case "equal":
+				self.findResult()
+			case _:
+				tmpNum = float(self.inputField.text())
+				tmpOperator = operation
 
 if __name__ == '__main__':
 	app = QApplication([])
