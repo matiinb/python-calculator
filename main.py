@@ -67,6 +67,9 @@ class calculator(QMainWindow, Ui_Window):
 	def delFromLast(self):
 		self.inputField.setText(self.inputField.text()[0:-1])
 
+		if self.inputField.text() == "":
+			self.inputField.setText("0")
+
 	def setTmpVars(operation):
 		global tmpOperator
 		global tmpNum
