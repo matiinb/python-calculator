@@ -25,7 +25,7 @@ class Ui_Window(object):
         font.setFamily("Cascadia Code")
         font.setPointSize(16)
         self.inputField.setFont(font)
-        self.inputField.setText("")
+        self.inputField.setText("0")
         self.inputField.setObjectName("inputField")
         self.clearBtn = QtWidgets.QPushButton(self.centralwidget)
         self.clearBtn.setGeometry(QtCore.QRect(10, 60, 141, 61))
