@@ -7,6 +7,8 @@ global tmpOperator
 tmpOperator = ""
 global tmpNum
 tmpNum = 0
+global clearInputField
+clearInputField = False
 
 class calculator(QMainWindow, Ui_Window):
 	def __init__(self, *args, obj=None, **kwargs):
@@ -45,9 +47,12 @@ class calculator(QMainWindow, Ui_Window):
 
 	def addToInput(self, num):
 		global tmpOperator
+		global clearInputField
 		if tmpOperator != "":
 			# Clear the input field when a previous operation is done
-			self.inputField.setText("")
+			if clearInputField:
+				self.inputField.setText("")
+				clearInputField = False
 
 		if num == 0 and self.inputField.text() == "":
 			return False
@@ -85,6 +90,7 @@ class calculator(QMainWindow, Ui_Window):
 	def calc(self, operation):
 		global tmpOperator
 		global tmpNum
+		global clearInputField
 		findEqual = False
 
 		print(tmpOperator)
@@ -99,6 +105,7 @@ class calculator(QMainWindow, Ui_Window):
 			case _:
 				tmpNum = float(self.inputField.text())
 				tmpOperator = operation
+				clearInputField = True
 
 if __name__ == '__main__':
 	app = QApplication([])
