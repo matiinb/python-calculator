@@ -43,7 +43,12 @@ class calculator(QMainWindow, Ui_Window):
 		self.additionBtn.clicked.connect(lambda: self.calc("addition"))
 		self.equalBtn.clicked.connect(lambda: self.calc("equal"))
 
+		self.negPosBtn.clicked.connect(self.toggleNum)
+
 		self.show()
+
+	def toggleNum(self):
+		self.inputField.setText(str(float(self.inputField.text()) * -1))
 
 	def addToInput(self, num):
 		global tmpOperator
