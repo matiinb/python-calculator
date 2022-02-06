@@ -19,6 +19,7 @@ class Ui_Window(object):
         self.centralwidget = QtWidgets.QWidget(Window)
         self.centralwidget.setObjectName("centralwidget")
         self.inputField = QtWidgets.QLineEdit(self.centralwidget)
+        self.inputField.setEnabled(False)
         self.inputField.setGeometry(QtCore.QRect(10, 10, 301, 41))
         font = QtGui.QFont()
         font.setFamily("Cascadia Code")
