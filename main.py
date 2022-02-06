@@ -79,7 +79,10 @@ class calculator(QMainWindow, Ui_Window):
 		global tmpNum
 		match tmpOperator:
 			case "divide":
-				self.inputField.setText(str(tmpNum / float(self.inputField.text())))
+				if float(self.inputField.text()) == 0:
+					self.inputField.setText("ERR")
+				else:
+					self.inputField.setText(str(tmpNum / float(self.inputField.text())))
 			case "multiply":
 				self.inputField.setText(str(tmpNum * float(self.inputField.text())))
 			case "subtract":
@@ -95,9 +98,6 @@ class calculator(QMainWindow, Ui_Window):
 		global tmpNum
 		global clearInputField
 		findEqual = False
-
-		print(tmpOperator)
-		print(tmpNum)
 
 		if tmpOperator != "":
 			self.findResult()
