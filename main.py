@@ -77,6 +77,7 @@ class calculator(QMainWindow, Ui_Window):
 	def findResult(self):
 		global tmpOperator
 		global tmpNum
+
 		match tmpOperator:
 			case "divide":
 				if float(self.inputField.text()) == 0:
@@ -101,6 +102,11 @@ class calculator(QMainWindow, Ui_Window):
 
 		if tmpOperator != "":
 			self.findResult()
+		
+		if tmpNum == ".":
+			tmpNum = 0
+		if self.inputField.text() == ".":
+			self.inputField.setText("0")
 
 		match operation:
 			case "equal":
