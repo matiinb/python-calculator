@@ -1,1 +1,0 @@
-## Check the validity of the user input that is manually entered in the input field
